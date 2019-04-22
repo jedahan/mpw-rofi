@@ -9,6 +9,6 @@ A bash script for [MasterPassword](https://gitlab.com/MasterPassword/MasterPassw
 ### Usage
 `$ bash mpw-rofi.sh`
 ### To do
-- Add feedback for wrong password
+- Add feedback if wrong password is entered.
 ### License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
