@@ -14,10 +14,8 @@ mpw() {
         echo >&2 "Copied!"
     }
 
-    # Empty the clipboard
-    :| _copy 2>/dev/null
+:| _copy 2>/dev/null
 
-    # Start Master Password and copy the output.
     printf %s "$(MPW_FULLNAME=$MPW_FULLNAME command mpw "$@")" | _copy
 }
 
