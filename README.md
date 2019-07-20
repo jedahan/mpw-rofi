@@ -6,6 +6,8 @@ A bash script for [MasterPassword](https://gitlab.com/MasterPassword/MasterPassw
 - `masterpassword-cli`
 - `jq`
 - `xclip` or `wl-clipboard`
+### Install
+Download and chmod the bash file.
 ### Usage
 `$ bash mpw-rofi.sh`
 ### To do
