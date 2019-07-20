@@ -8,8 +8,8 @@ A bash script for [MasterPassword](https://gitlab.com/MasterPassword/MasterPassw
 - `xclip` or `wl-clipboard`
 ### Installing
 Download and chmod the bash file.
-`$ git clone https://github.com/jakobkukla/mpw-rofi/edit/master/mpw-rofi.sh`
-`$ chmod a+x mpw-rofi.sh`
+- `$ wget https://github.com/jakobkukla/mpw-rofi/blob/master/mpw-rofi.sh`
+- `$ chmod a+x mpw-rofi.sh`
 ### Usage
 `$ bash mpw-rofi.sh`
 ### To do
