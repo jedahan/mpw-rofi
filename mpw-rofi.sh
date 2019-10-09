@@ -1,43 +1,43 @@
-#/bin/bash
+#!/usr/bin/env bash
+
+has() {
+  echo hash "$@"
+  hash "$@" 2>/dev/null
+}
+
+has rofi || {
+  notify-send "rofi not found" "please install!"
+  echo >&2 "rofi not found, please install"
+  exit 1
+}
+
 mpw() {
-    _copy() {
-	if hash pbcopy 2>/dev/null; then
-            pbcopy
-        elif hash xclip 2>/dev/null; then
-            xclip -selection clip
-	elif hash wl-copy 2>/dev/null; then 
-            wl-copy
-        else
-            cat; echo 2>/dev/null
-            return
-	fi
-        echo >&2 "Copied!"
-    }
+  _copy() {
+    has pbcopy && pbcopy && return
+    has xsel && xsel -ib && return
+    has xclip && xclip -selection clip && return
+    has wl-copy && wl-copy && return
+    cat
+  }
 
 :| _copy 2>/dev/null
 
-    printf %s "$(MPW_FULLNAME=$MPW_FULLNAME command mpw "$@")" | _copy
+  printf %s "$(MPW_FULLNAME=$MPW_FULLNAME command mpw "$@")" | _copy
 }
 
-count=$(ls -1 $HOME/.mpw.d/*.mpsites.json 2> /dev/null | wc -l)
-if [ $count != 0 ]
-then
-    pathtoconfig=$(ls -1 $HOME/.mpw.d/*.mpsites.json 2> /dev/null | head -1)
-    fullname=${pathtoconfig%.*}
-    fullname=${fullname%.*}
-    fullname=${fullname##*/}
+config=$(command ls -1 "$HOME"/.mpw.d/*.mpsites 2> /dev/null)
+if [ -n "$config" ]; then
+    fullname=$(command grep -oP 'Full Name: \K(.*)' "${config}")
 else
-    fullname=$(rofi -dmenu -p "Full name")
+    fullname=$(rofi -dmenu -p "full name ")
 fi
 
-storedsites=$(cat "$HOME/.mpw.d/$fullname.mpsites.json" | jq -r '.sites | keys[]' | sort -n)
-site=$(echo -e "$storedsites" | rofi -dmenu -p "Site name")
+storedsites=$(command grep '^[^#]' "$HOME/.mpw.d/$fullname.mpsites" | awk '{print $4}' | sort -n)
+site=$(echo -e "$storedsites" | rofi -dmenu -p "site ")
 
-if [ -z $site ]
-then
-    exit
-fi
+test "$site" || exit
+
 echo "#/bin/bash
-rofi -dmenu -password -p 'Password'" > /tmp/mpw_askpass.sh
+rofi -dmenu -password -p 'password '" > /tmp/mpw_askpass.sh
 chmod a+x /tmp/mpw_askpass.sh
 MPW_ASKPASS="/tmp/mpw_askpass.sh" mpw -u "$fullname" -t x "$site"
