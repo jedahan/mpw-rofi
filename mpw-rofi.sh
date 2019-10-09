@@ -1,13 +1,20 @@
 #!/usr/bin/env bash
 
+message() {
+  if has notify-send && [[ -z "$TTY" ]]; then
+    notify-send -i dialog-information "mpw-rofi message" "$@"
+  else
+    echo >&2 "$@"
+  fi
+}
+
 has() {
   echo hash "$@"
   hash "$@" 2>/dev/null
 }
 
-has rofi || {
-  notify-send "rofi not found" "please install!"
-  echo >&2 "rofi not found, please install"
+has rolfi || {
+  message "rofi not found, please install!"
   exit 1
 }
 
