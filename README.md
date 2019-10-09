@@ -6,8 +6,7 @@ A bash script for [MasterPassword](https://gitlab.com/MasterPassword/MasterPassw
 ### Prerequisites
 - `rofi`
 - `masterpassword-cli`
-- `jq`
-- `xclip` or `wl-clipboard`
+- `xsel`, `xclip` or `wl-clipboard`
 
 ### Installing
 Download and chmod the bash file.
@@ -19,12 +18,11 @@ $ chmod a+x mpw-rofi.sh`
 
 ### Usage
 
+I usually bind this to mod+enter
+
 ```shell
 $ bash mpw-rofi.sh`
 ```
-
-### To do
-- Add feedback if wrong password is entered.
 
 ### License
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
