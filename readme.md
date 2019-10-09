@@ -12,7 +12,7 @@ A bash script for [MasterPassword](https://gitlab.com/MasterPassword/MasterPassw
 Download and chmod the bash file.
 
 ```shell
-$ wget https://github.com/jakobkukla/mpw-rofi/blob/master/mpw-rofi.sh
+$ wget https://github.com/jedahan/mpw-rofi/blob/master/mpw-rofi.sh
 $ chmod a+x mpw-rofi.sh`
 ```
 
@@ -25,4 +25,4 @@ $ bash mpw-rofi.sh`
 ```
 
 ### License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License - see the [license](./license) file for details.
